@@ -1,8 +1,8 @@
-package pages.basicPage;
+package pages.basicelement;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import pages.firstScreen.FirstScreenInitAccounts;
+import pages.firstscreen.FirstScreenInitAccounts;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;

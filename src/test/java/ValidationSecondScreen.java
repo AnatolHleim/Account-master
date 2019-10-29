@@ -1,9 +1,9 @@
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.exceptionScreen.EntityScreenException;
-import pages.firstScreen.FirstScreenInitAccounts;
-import pages.secondScreen.SecondScreenSelectPackageAndCurrency;
+import pages.exceptionscreen.EntityScreen;
+import pages.firstscreen.FirstScreenInitAccounts;
+import pages.secondscreen.SecondScreenSelectPackageAndCurrency;
 import utilites.GenerateCodePage;
 import utilites.ParserJson;
 import utilites.RandomString;
@@ -12,13 +12,13 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ValidationSecondScreen {
     private SecondScreenSelectPackageAndCurrency secondScreenSelectPackageAndCurrency;
-    private EntityScreenException entityScreenException;
+    private EntityScreen entityScreenException;
     private ParserJson parserJson;
     @BeforeClass
     public void init(){
         FirstScreenInitAccounts firstScreenInitAccounts = new FirstScreenInitAccounts();
         secondScreenSelectPackageAndCurrency = new SecondScreenSelectPackageAndCurrency();
-        entityScreenException = new EntityScreenException();
+        entityScreenException = new EntityScreen();
         parserJson = new ParserJson("data.json");
         RandomString randomString = new RandomString();
         open(parserJson.value("URL"));

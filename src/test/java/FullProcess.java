@@ -1,9 +1,9 @@
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.firstScreen.FirstScreenInitAccounts;
-import pages.fouthPageFillingOutProfile.FourthScreenProfile;
-import pages.secondScreen.SecondScreenSelectPackageAndCurrency;
-import pages.threePageLoadPhoto.ThirdScreenLoadPhoto;
+import pages.firstscreen.FirstScreenInitAccounts;
+import pages.fouthscreen.FourthScreenProfile;
+import pages.secondscreen.SecondScreenSelectPackageAndCurrency;
+import pages.thirdscreen.ThirdScreenLoadPhoto;
 import utilites.GenerateCodePage;
 import utilites.ParserJson;
 import utilites.RandomString;

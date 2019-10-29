@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.*;
 
 public class GenerateCodePage {
+    private GenerateCodePage(){}
     private static SelenideElement code = $(By.xpath("//pre"));
     private static final String URL_GENERATOR = "https://bcsrvwebn.local.st.by/Alfa-Account/Bia.Portlets.Ib.Alfa.Membership.Login/Login/GetMCodeTest?phone=";
 

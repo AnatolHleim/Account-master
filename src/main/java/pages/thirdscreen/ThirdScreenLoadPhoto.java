@@ -1,4 +1,4 @@
-package pages.threePageLoadPhoto;
+package pages.thirdscreen;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -16,22 +16,23 @@ public class ThirdScreenLoadPhoto {
     private SelenideElement buttonNext = $("[data-bind='click: continueFourthStep']");
     private SelenideElement loaderPhoto = $(("[class='loadmask-msg red']"));
     private SelenideElement labelLoad = $(("[aria-label='Загрузить фото']"));
-
+    private String path = "src/test/";
     public ThirdScreenLoadPhoto inputImageOne(String firstPassportPhoto){
         labelLoad.shouldBe(Condition.visible);
-        inputFirstImage.sendKeys(getAbsolutePath("src/test/"+ firstPassportPhoto));
+
+        inputFirstImage.sendKeys(getAbsolutePath(path + firstPassportPhoto));
         loaderPhoto.shouldBe(Condition.visible);
         return this;
     }
     public ThirdScreenLoadPhoto inputImageTwo(String secondPassportPhoto){
         loaderPhoto.waitUntil(Condition.hidden,15000);
-        inputSecondImage.sendKeys(getAbsolutePath("src/test/"+secondPassportPhoto));
+        inputSecondImage.sendKeys(getAbsolutePath(path +secondPassportPhoto));
         loaderPhoto.waitUntil(Condition.visible,2000);
         return this;
     }
     public ThirdScreenLoadPhoto inputImageThree(String thirdPassportPhoto){
         loaderPhoto.waitUntil(Condition.hidden,15000);
-        inputThirdImage.sendKeys(getAbsolutePath("src/test/"+thirdPassportPhoto));
+        inputThirdImage.sendKeys(getAbsolutePath(path +thirdPassportPhoto));
         return this;
     }
     private String getAbsolutePath(String canonical) {

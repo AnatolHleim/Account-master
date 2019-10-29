@@ -1,11 +1,11 @@
-package pages.exceptionScreen;
+package pages.exceptionscreen;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class EntityScreenException {
+public class EntityScreen {
     private SelenideElement titleEntityPage = $("");
 
     public String getTitleEntityPage(){

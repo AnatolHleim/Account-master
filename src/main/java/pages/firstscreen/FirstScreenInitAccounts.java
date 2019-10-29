@@ -1,4 +1,4 @@
-package pages.firstScreen;
+package pages.firstscreen;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;

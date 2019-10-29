@@ -1,4 +1,4 @@
-package pages.fouthPageFillingOutProfile;
+package pages.fouthscreen;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;

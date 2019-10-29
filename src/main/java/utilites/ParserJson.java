@@ -25,13 +25,13 @@ public class ParserJson {
         try {
             reader = new FileReader(jsonData.getAbsolutePath());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         JSONObject jsonObject = null;
         try {
             jsonObject = (JSONObject) jsonParser.parse(reader);
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return (String) (jsonObject != null ? jsonObject.get(parameter) : null);
     }

@@ -2,7 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.firstScreen.FirstScreenInitAccounts;
+import pages.firstscreen.FirstScreenInitAccounts;
 import utilites.ParserJson;
 import utilites.RandomString;
 

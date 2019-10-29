@@ -1,4 +1,4 @@
-package pages.secondScreen;
+package pages.secondscreen;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;

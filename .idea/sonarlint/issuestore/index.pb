@@ -1,0 +1,33 @@
+
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+z
+Jsrc/main/java/pages/secondscreen/SecondScreenSelectPackageAndCurrency.java,7\a\7a1986e18b7a9bd744db3627f2c02f191be81dd3
+\
+,src/main/java/utilites/GenerateCodePage.java,4\6\46be48ac599222e3f2a23e94aa13d1c287fbe10b
+V
+&src/main/java/utilites/ParserJson.java,4\8\488687555552d02621466fe5af5a7e3bb1123fda
+X
+(src/main/java/utilites/RandomString.java,b\b\bbe176f916e7d8ca8a41a27834cc546f595be840
+Y
+)src/test/java/ValidationSecondScreen.java,d\b\db5fe4ba8572afe5358bcebf4005ec294c76ed79
+i
+9src/main/java/pages/thirdscreen/ThirdScreenLoadPhoto.java,f\3\f393484495971b8de80c9bdc82ffca2f3986e1fa
+X
+(src/test/java/ValidationFirstScreen.java,7\2\72f15e53a380e451521ffc08c9f500558c1e22f8
+R
+"src/test/java/util/annotations.xml,6\8\68d05974832022e3c09bd5cbc40ba6f3e63f520e
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+N
+src/test/java/FullProcess.java,5\f\5f0c5293db41ac95d14e01d071260a3688d75fdc
+P
+ src/test/java/LoadPhotoTest.java,8\0\80cb4493bb96a2f7707a5b9034262f4e0f750d9f
+j
+:src/main/java/pages/basicelement/BasicElementOnScreen.java,6\f\6fed9dfb501257a39d96ce949704f04b9c797284
+e
+5src/main/java/pages/exceptionscreen/EntityScreen.java,5\f\5f70c02d68ad93c8b6c53671dee1c6464c2bc30e
+h
+8src/main/java/pages/fouthscreen/FourthScreenProfile.java,2\f\2f7463fefaea339b844535e5c8d82498b36678de
+l
+<src/main/java/pages/firstscreen/FirstScreenInitAccounts.java,f\6\f644b9f0fd5ceae79e71b48204ac08e546454021

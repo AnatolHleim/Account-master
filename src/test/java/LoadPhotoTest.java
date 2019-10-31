@@ -2,8 +2,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.firstscreen.FirstScreenInitAccounts;
-import pages.secondscreen.SecondScreenSelectPackageAndCurrency;
-import pages.thirdscreen.ThirdScreenLoadPhoto;
+import pages.secondscreencurrencyandpackageselect.SecondScreenSelectPackageAndCurrency;
+import pages.thirdscreenloadphoto.ThirdScreenLoadPhoto;
 import utilites.GenerateCodePage;
 import utilites.ParserJson;
 import utilites.RandomString;
@@ -19,11 +19,12 @@ public class LoadPhotoTest {
         thirdPageLoadPhoto = new ThirdScreenLoadPhoto();
         ParserJson parserJson = new ParserJson("data.json");
         open(parserJson.value("URL"));
-        firstScreenInitAccounts.enterAndSendValidDataToSMSCode(parserJson.value("UNP"), new RandomString(9).nextString())
+        firstScreenInitAccounts.inputDataUNPField(parserJson.value("UNP"))
+                .inputDataPhoneField(new RandomString(9).nextString())
                 .inputDataSMSField(GenerateCodePage.getSMSCode(firstScreenInitAccounts.getDataPhoneField()))
-                .clickSubmitToSecondScreen();
+                .clickGoToSecondScreenButton();
         new SecondScreenSelectPackageAndCurrency().selectPackage(1)
-                .clickNext();
+                .clickNextToThirdScreen();
     }
     @Test(dataProvider= "data")
     public void verifyAllFormatUploadPhoto(String [] data) {

@@ -9,6 +9,7 @@ import static org.openqa.selenium.Keys.HOME;
 
 public class FirstScreenInitAccounts {
     private SelenideElement setValueInputUNP = $("[name='Unp'][type='text']");
+    private SelenideElement textDownTitle = $("[class='default-text-indent']");
     private SelenideElement getValueInputUNP = $(By.id("Unp"));
     private SelenideElement setValueInputPhone = $("[name='Phone'][type='text']");
     private SelenideElement getValueInputPhone = $(By.id("Phone"));
@@ -43,7 +44,7 @@ public class FirstScreenInitAccounts {
         return this;
     }
 
-    public void clickSubmitToSecondScreen() {
+    public void clickGoToSecondScreenButton() {
         buttonSubmit.click();
     }
 
@@ -55,10 +56,9 @@ public class FirstScreenInitAccounts {
         return getValueInputUNP.getValue();
     }
 
-    public void getCodeButton() {
-        buttonGetCode.click();
-
-
+    public FirstScreenInitAccounts clickToGetCodeButton() {
+        buttonGetCode.waitUntil(Condition.visible,10000).click();
+        return this;
     }
 
     public String getErrorUNP() {
@@ -68,11 +68,12 @@ public class FirstScreenInitAccounts {
     public String getErrorPhone() {
         return errorPhoneValidation.shouldBe(Condition.visible).text();
     }
+
     public String getErrorSMS() {
         return errorSMSCodeValidation.shouldBe(Condition.visible).text();
     }
 
-    private FirstScreenInitAccounts activateCheckBoxAgree() {
+    public FirstScreenInitAccounts activateCheckBoxAgree() {
         inputCheckBoxAgree.shouldNot(Condition.checked).click();
         return this;
     }
@@ -81,31 +82,28 @@ public class FirstScreenInitAccounts {
         return errorCheckBoxValidation.shouldBe(Condition.visible).text();
     }
 
-    public FirstScreenInitAccounts enterAndSendValidDataToSMSCode(String UNP, String phone) {
-        inputDataUNPField(UNP)
-                .inputDataPhoneField(phone)
-                .activateCheckBoxAgree()
-                .getCodeButton();
-        setValueSMSCode.waitUntil(Condition.visible,2000);
-        return this;
-    }
-    public void sendTry(int count){
+    public void sendTryToGetSmsCode(int count){
         while (count>0){
             buttonTryNewSMS.waitUntil(Condition.enabled,(Integer.parseInt(timerNextCode.waitUntil(Condition.visible,20000).getText())*1000)+2000);
             buttonTryNewSMS.click();
             count--;
         }
     }
+
     public String getNotifyText(){
         return notifyAlert.waitUntil(Condition.visible,5000).text();
     }
 
-    public FirstScreenInitAccounts clickHelpIcon(){
+    public void clickHelpIcon(){
         helpIconForPhone.waitUntil(Condition.visible, 10000).click();
-        return this;
     }
+
     public String getTextPopUpHelp(){
         return helpTextPopUp.waitUntil(Condition.visible,2000).getText();
+    }
+
+    public String getTextDownTitle(){
+        return textDownTitle.waitUntil(Condition.visible,10000).getText();
     }
 
     public String getTextNearCheckBox(){

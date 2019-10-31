@@ -1,9 +1,11 @@
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.firstscreen.FirstScreenInitAccounts;
-import pages.fouthscreen.FourthScreenProfile;
-import pages.secondscreen.SecondScreenSelectPackageAndCurrency;
-import pages.thirdscreen.ThirdScreenLoadPhoto;
+import pages.fouthpagefillingoutprofile.FourthScreenProfile;
+import pages.secondscreencurrencyandpackageselect.SecondScreenSelectPackageAndCurrency;
+import pages.thirdscreenloadphoto.ThirdScreenLoadPhoto;
 import utilites.GenerateCodePage;
 import utilites.ParserJson;
 import utilites.RandomString;
@@ -20,6 +22,7 @@ public class FullProcess {
 
     @BeforeMethod
     public void init() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         firstScreenInitAccounts = new FirstScreenInitAccounts();
         secondScreenSelectPackageAndCurrency = new SecondScreenSelectPackageAndCurrency();
         thirdPageLoadPhoto = new ThirdScreenLoadPhoto();
@@ -31,15 +34,18 @@ public class FullProcess {
 
     @Test
     public void validateFullProcess() {
-        firstScreenInitAccounts.enterAndSendValidDataToSMSCode(parserJson.value("UNP"), randomString.nextString())
+        firstScreenInitAccounts.inputDataUNPField(parserJson.value("UNP"))
+                .inputDataPhoneField(randomString.nextString())
                 .inputDataSMSField(GenerateCodePage.getSMSCode(firstScreenInitAccounts.getDataPhoneField()))
-                .clickSubmitToSecondScreen();
+                .clickGoToSecondScreenButton();
         secondScreenSelectPackageAndCurrency.selectPackage(1)
-                .clickNext();
+                .clickNextToThirdScreen();
         thirdPageLoadPhoto.inputImageOne("01.jpg")
                 .inputImageTwo("02.jpg")
                 .inputImageThree("03.jpg")
-                .clickNextOnThirdPage();
-        fouthPageProfile.enterAddress("ауэзова");
+                .inputImageFour("04.jpg")
+               .clickNextToFourthPage();
+        sleep(60000000);
     }
+
 }

@@ -8,10 +8,10 @@ import static com.codeborne.selenide.Selenide.*;
 public class GenerateCodePage {
     private GenerateCodePage(){}
     private static SelenideElement code = $(By.xpath("//pre"));
-    private static final String URL_GENERATOR = "https://bcsrvwebn.local.st.by/Alfa-Account/Bia.Portlets.Ib.Alfa.Membership.Login/Login/GetMCodeTest?phone=";
+    private static final String JSON_PATH = "data.json";
 
     public static String getSMSCode(String phoneInput) {
-        executeJavaScript("window.open('" + URL_GENERATOR + phoneInput + "', '_blank');");
+        executeJavaScript("window.open('" + new ParserJson(JSON_PATH).value("URL_SMS_GENERATE") + phoneInput + "', '_blank');");
         switchTo().window(1);
         String sms = code.getText().substring(1, 5);
         switchTo().window(1).close();

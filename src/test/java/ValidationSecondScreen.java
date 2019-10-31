@@ -1,36 +1,51 @@
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.exceptionscreen.EntityScreen;
+import pages.exceptionscreen.ExceptionEntityScreen;
 import pages.firstscreen.FirstScreenInitAccounts;
-import pages.secondscreen.SecondScreenSelectPackageAndCurrency;
+import pages.secondscreencurrencyandpackageselect.SecondScreenSelectPackageAndCurrency;
 import utilites.GenerateCodePage;
 import utilites.ParserJson;
 import utilites.RandomString;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ValidationSecondScreen {
+
     private SecondScreenSelectPackageAndCurrency secondScreenSelectPackageAndCurrency;
-    private EntityScreen entityScreenException;
+    private ExceptionEntityScreen entityScreenException;
     private ParserJson parserJson;
-    @BeforeClass
+
+    @BeforeMethod
     public void init(){
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         FirstScreenInitAccounts firstScreenInitAccounts = new FirstScreenInitAccounts();
         secondScreenSelectPackageAndCurrency = new SecondScreenSelectPackageAndCurrency();
-        entityScreenException = new EntityScreen();
+        entityScreenException = new ExceptionEntityScreen();
         parserJson = new ParserJson("data.json");
         RandomString randomString = new RandomString();
         open(parserJson.value("URL"));
-        firstScreenInitAccounts.enterAndSendValidDataToSMSCode(parserJson.value("UNP"), randomString.nextString())
+        try {
+            switchTo().alert().accept();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        firstScreenInitAccounts
+                .inputDataUNPField(parserJson.value("UNP"))
+                .inputDataPhoneField(randomString.nextString())
                 .inputDataSMSField(GenerateCodePage.getSMSCode(firstScreenInitAccounts.getDataPhoneField()))
-                .clickSubmitToSecondScreen();
+                .clickGoToSecondScreenButton();
     }
+
     @Test
     public void validateNotificationWhenNotSelectedPackage(){
-        secondScreenSelectPackageAndCurrency.clickNext();
+        secondScreenSelectPackageAndCurrency.clickNextToThirdScreen();
         Assert.assertEquals(secondScreenSelectPackageAndCurrency.getNotifyText(), parserJson.value("notifyNotSelectedPackage"));
     }
+
     @Test
     public void verifyCompanyNameThisUnp() {
         Assert.assertEquals(secondScreenSelectPackageAndCurrency.getTextOwnerUNP(), parserJson.value("companyName"));
@@ -38,19 +53,53 @@ public class ValidationSecondScreen {
 
     @Test
     public void verifyCompanyUNPisEnteredOnFirstPage() {
-        Assert.assertEquals(secondScreenSelectPackageAndCurrency.getTextOwnerUNP(), parserJson.value("UNP"));
+        Assert.assertEquals(secondScreenSelectPackageAndCurrency.getTextUNP(), parserJson.value("UNP"));
     }
 
     @Test
     public void verifyExceptionScreenIfSelectedRadioButtonRepresent(){
         secondScreenSelectPackageAndCurrency.clickRadioButtonRepresent()
-                                            .clickNext();
-        Assert.assertEquals(entityScreenException.getTitleEntityPage(), parserJson.value("notifyNotSelectedPackage"));
+                                            .clickNextToThirdScreen();
+        Assert.assertEquals(entityScreenException.getTitleEntityPage(), parserJson.value("titleEntityScreenException"));
     }
+
     @Test
-    public void verifyExceptionIfSelectedRadioButtonRepresent(){
-        secondScreenSelectPackageAndCurrency.clickRadioButtonRepresent()
-                .clickNext();
-        Assert.assertEquals(secondScreenSelectPackageAndCurrency.getNotifyText(), parserJson.value("notifyNotSelectedPackage"));
+    public void verifyHiddenBlockPackageIfSelectedRadioButtonRepresent(){
+        secondScreenSelectPackageAndCurrency.clickRadioButtonRepresent();
+        Assert.assertFalse(secondScreenSelectPackageAndCurrency.isBlockPackagePresented());
+    }
+
+    @Test
+    public void verifySaveSelectedCurrencyAfterChangeRadioButton(){
+        secondScreenSelectPackageAndCurrency.selectCurrencyEuroUsdRub()
+                .clickRadioButtonRepresent()
+                .clickRadioButtonOwner();
+        Assert.assertTrue(secondScreenSelectPackageAndCurrency.isCheckBoxEuroSelected());
+    }
+
+    @Test
+    public void verifySaveSelectedPackageAfterChangeRadioButton(){
+        secondScreenSelectPackageAndCurrency.selectPackage(1)
+                .clickRadioButtonRepresent()
+                .clickRadioButtonOwner();
+        Assert.assertTrue(secondScreenSelectPackageAndCurrency.isPackageSelected(1));
+    }
+
+    @Test
+    public void verifyCollapsedSelectedPackageAfterDoubleClick(){
+        secondScreenSelectPackageAndCurrency.selectPackage(1)
+                                            .selectPackage(1);
+        Assert.assertTrue(secondScreenSelectPackageAndCurrency.isPackageCollapsed(1));
+    }
+
+    @Test
+    public void verifyButtonBackRedirectToFirstScreen(){
+        Assert.assertEquals(secondScreenSelectPackageAndCurrency.clickButtonBackToFirstScreen().getTextDownTitle(), parserJson.value("textDownTitleFirstScreen"));
+    }
+
+    @AfterMethod
+    public void finalized() {
+        clearBrowserCookies();
+
     }
 }

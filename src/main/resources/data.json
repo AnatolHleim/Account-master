@@ -1,11 +1,13 @@
 {
-  "URL": "https://bcsrvwebn.local.st.by/Alfa-Account/Default/OpenAccount",
+  "URL": "https://bcsrvwebn.local.st.by/Alfa-Test/Default/OpenAccount",
+  "URL_SMS_GENERATE": "https://bcsrvwebn.local.st.by/Alfa-Test/Bia.Portlets.Ib.Alfa.Membership.Login/Login/GetMCodeTest?phone=",
   "phoneValid": "129103999",
   "phoneMoreThan9Digit": "123123121111111111",
   "phoneLessThan9Digit": "12312",
   "phoneEmpty": "",
   "phoneExpected": "+375(12) 312-31-21",
   "UNP": "192230006",
+  "UNP_RESERVED_ACCOUNT": "800009448",
   "UNPEmpty": "",
   "UNPIncorrectMask": "123456789",
   "UNPLessThan9Digit": "123456",
@@ -25,5 +27,13 @@
   "helpPopUpFirstScreen": "Указанный номер телефона будет использоваться для оповещения об открытии счета, а в дальнейшем - для подписания документов",
   "notifyNotSelectedPackage": "Выберите пакет",
   "titleEntityPage": "Добро пожаловать в Альфа-Банк!",
-  "companyName": "Глейм Анатолий Александрович"
+  "companyName": "Глейм Анатолий Александрович",
+  "backGroundImageAccount" : "url(\"https://bcsrvwebn.local.st.by/Alfa-Test/Content/Sites/Ib2/Alfa/images/background/minsksunrise.jfif\")",
+  "textDownTitleFirstScreen" : "Чтобы открыть счет онлайн и подключить пакет услуг укажите УНП и ваш номер мобильного телефона. В дальнейшем номер телефона будет использоваться для подписания документов",
+  "textOnFooter" : "© 1999–2019 ЗАО «Альфа-Банк»       Лицензия НБРБ № 22 от 22.07.2014",
+  "titleAlfaSite" : "Альфа-Банк в Беларуси | Минск",
+  "titleEntityScreenException" : "Добро пожаловать в Альфа-Банк!",
+  "titleReservedAccountException" : "Счета уже зарезервированы",
+  "shortSms" : "12",
+  "incorrectSms" : "1234"
 }
